@@ -10,7 +10,7 @@ void enableRawMode(){
     tcgetattr(STDIN_FILENO,&org_terminos);
     atexit(disableRawMode);
     struct termios raw = org_terminos;
-    raw.c_lflag &= ~(ECHO);
+    raw.c_lflag &= ~(ECHO | ICANON);
     tcsetattr(STDERR_FILENO,TCSAFLUSH,&raw);
 }
 int main(){
